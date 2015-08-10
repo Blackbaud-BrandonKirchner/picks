@@ -12,7 +12,7 @@ module V1
     end
 
     def show
-      @team = Team.find(id)
+      @team = Team.find(params[:id])
       render @team, serializer: TeamSerializer, root: nil
     end
   end
