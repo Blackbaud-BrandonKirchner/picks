@@ -9,7 +9,7 @@ Bundler.require(*Rails.groups)
 module Picks
   class Application < Rails::Application
     config.api_only = true
-    
+
     config.middleware.insert_before 'Rack::Runtime', 'Rack::Cors' do
       allow do
         origins '*'
