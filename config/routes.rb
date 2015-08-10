@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   namespace :v1, defaults: { format: :json } do
     resource :login, only: [:create], controller: :sessions
     resources :teams, only: [:index, :create, :show]
+    resources :games, only: [:index, :create, :show]
 
     match "*path", to: -> (env) { [404, {}, ['{"error": "not_found"}']] }, via: :all
   end
