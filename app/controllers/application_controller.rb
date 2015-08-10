@@ -4,6 +4,9 @@ class ApplicationController < ActionController::API
   before_action :authenticate_user_from_token!
 
   respond_to :json
+  rescue_from StandardError do |exception|
+    render json: {error: t(exception)}, status: 404
+  end
 
   def authenticate_user_from_token!
     auth_token = request.headers['Authorization']
