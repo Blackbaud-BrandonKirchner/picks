@@ -1,6 +1,5 @@
 module V1
   class TeamsController < ApplicationController
-
     def create
       @team = Team.new
 
@@ -8,12 +7,15 @@ module V1
     end
 
     def index
-      render json Team.all, serializer: TeamSerializer, root: nil
+      @teams = Team.all
+
+      render json: @teams, each_serializer: TeamSerializer, root: nil
     end
 
     def show
       @team = Team.find(params[:id])
-      render @team, serializer: TeamSerializer, root: nil
+
+      render json: @team, serializer: TeamSerializer, root: nil
     end
   end
 end
