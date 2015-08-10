@@ -3,7 +3,7 @@ module V1
     skip_before_action :authenticate_user_from_token!
 
     def create
-      @user = User.find_for_database_authentication(email: params[:username])
+      @user = User.find_for_database_authentication(username: params[:username])
       return invalid_login_attempt unless @user
 
       if @user.valid_password? params[:password]
