@@ -29,7 +29,7 @@ class ApplicationController < ActionController::API
     user_id = auth_token.split(':').first
     user = User.where(id: user_id).first
 
-    if user && Devise.secure_compare(user.auth_token, auth_token)
+    if user && Devise.secure_compare(user.access_token, auth_token)
       sign_in user, store: false
     else
       authentication_error
