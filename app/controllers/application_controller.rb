@@ -5,7 +5,7 @@ class ApplicationController < ActionController::API
 
   respond_to :json
   rescue_from StandardError do |exception|
-    render json: {error: t(exception)}, status: 404
+    render json: {error: exception}, status: 404
   end
 
   def authenticate_user_from_token!
@@ -37,6 +37,6 @@ class ApplicationController < ActionController::API
   end
 
   def authentication_error
-    render json: {error: t('unauthorized')}, status: 401
+    render json: {error: 'unauthorized'}, status: 401
   end
 end
